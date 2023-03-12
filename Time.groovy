@@ -12,10 +12,9 @@
 
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-if(args.size() < 2) throw new IllegalArgumentException("Please include task name and deadline time")
+if(args.size() < 2 || args[0] == null || args[1] == null) throw new IllegalArgumentException("Please include task name and deadline time")
 def task = args[0];
 def deadline = args[1]
-if(task == null || deadline == null) throw new IllegalArgumentException("Please include task name and deadline time")
 def date = Date.parse("HH:mm", deadline)
 def alarmTime = date.toOffsetDateTime().atZoneSameInstant(TimeZone.getDefault().toZoneId()).toLocalDateTime()
 def duration = alarmTime.toLocalTime().toSecondOfDay() - LocalTime.now().toSecondOfDay()
